@@ -1,33 +1,59 @@
 extends CharacterBody3D
+ 
+@export var FORWARD_SPEED = 1.0
+@export var BACK_SPEED = 1.0
+@export var TURN_SPEED = 0.05
 
+var RUN_SPEED_IF_PRESSED = 3.0
+var RUN_SPEED_IF_NOT_PRESSED = 1.0
 
-@export var speed = 14
+var Vec3Z = Vector3.ZERO
 
-@export var fall_acceleration = 75
+#OPTIONAL: These could be used to change sensitivity of either rotating z or y
+#var M_LOOK_SENS = 1
+#var V_LOOK_SENS = 1
 
-var target_velocity = Vector3.ZERO
+func _physics_process(delta: float) -> void:
+	var isRunPressed = Input.is_action_pressed("run")
+	var runModifier = RUN_SPEED_IF_PRESSED if isRunPressed else RUN_SPEED_IF_NOT_PRESSED
+	if Input.is_action_pressed("move_forward") and Input.is_action_pressed("move_back"):
+		velocity.x = 0
+		velocity.z = 0
 
-func _physics_process(delta):
-	var direction = Vector3.ZERO
+	if Input.is_action_pressed("move_forward") or isRunPressed:
+		var forwardVector = -Vector3.FORWARD.rotated(Vector3.UP, rotation.y)
+		velocity = -forwardVector * FORWARD_SPEED * runModifier
+		
+	elif Input.is_action_pressed("move_back"):
+		var backwardVector = Vector3.FORWARD.rotated(Vector3.UP, rotation.y)
+		velocity = -backwardVector * BACK_SPEED * runModifier
 	
-	if Input.is_action_pressed("move_right"):
-		direction.x +=1
-	if Input.is_action_pressed("move_left"):
-		direction.x -=1
-	if Input.is_action_pressed("move_back"):
-		direction.z +=1
-	if Input.is_action_pressed("move_forward"):
-		direction.z -=1
 	
-	if direction != Vector3.ZERO:
-		direction = direction.normalized()
-		$Pivot.basis = Basis.looking_at(direction)
+	#If pressing nothing stop velocity
+	else:
+		velocity.x = 0
+		velocity.z = 0
 	
-	target_velocity.x = direction.x * speed
-	target_velocity.z = direction.z * speed
+	# IF turn left WHILE moving back, turn right
+	if Input.is_action_pressed("turn_left") and Input.is_action_pressed("move_back"):
+		rotation.z -= Vec3Z.y + TURN_SPEED #* V_LOOK_SENS
+		rotation.z = clamp(rotation.x, -50, 90)
+		rotation.y -= Vec3Z.y + TURN_SPEED #* M_LOOK_SENS
 	
-	if not is_on_floor():
-		target_velocity.y = target_velocity.y - (fall_acceleration * delta)
+	elif Input.is_action_pressed("turn_left"):
+		rotation.z += Vec3Z.y - TURN_SPEED #* V_LOOK_SENS
+		rotation.z = clamp(rotation.x, -50, 90)
+		rotation.y += Vec3Z.y + TURN_SPEED #* M_LOOK_SENS
+
+	# IF turn right WHILE moving back, turn left
+	if Input.is_action_pressed("turn_right") and Input.is_action_pressed("move_back"):
+		rotation.z += Vec3Z.y - TURN_SPEED #* V_LOOK_SENS
+		rotation.z = clamp(rotation.x, -50, 90)
+		rotation.y += Vec3Z.y + TURN_SPEED #* M_LOOK_SENS
+		
+	elif Input.is_action_pressed("turn_right"):
+		rotation.z -= Vec3Z.y + TURN_SPEED #* V_LOOK_SENS
+		rotation.z = clamp(rotation.x, -50, 90)
+		rotation.y -= Vec3Z.y + TURN_SPEED #* M_LOOK_SENS
 	
-	velocity = target_velocity
 	move_and_slide()
