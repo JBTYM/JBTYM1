@@ -35,7 +35,7 @@ func _physics_process(delta: float) -> void:
 		velocity.z = 0
 		
 	if (isRunPressed):
-		$AnimationPlayer.speed_scale = 4
+		$AnimationPlayer.speed_scale = 6
 	else:
 		$AnimationPlayer.speed_scale = 1
 	
