@@ -3,13 +3,14 @@
 [ext_resource type="PackedScene" uid="uid://xgnoeykk4r5t" path="res://player.tscn" id="1_olanh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0igi7"]
-size = Vector3(50, 1, 50)
+size = Vector3(5, 1, 5)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6dci3"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wsyge"]
+albedo_color = Color(0.435294, 0.286275, 0.141176, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_06kol"]
-material = SubResource("StandardMaterial3D_6dci3")
-size = Vector3(50, 1, 50)
+material = SubResource("StandardMaterial3D_wsyge")
+size = Vector3(5, 1, 5)
 
 [node name="Main" type="Node"]
 
@@ -23,7 +24,6 @@ shape = SubResource("BoxShape3D_0igi7")
 mesh = SubResource("BoxMesh_06kol")
 
 [node name="Player" parent="." instance=ExtResource("1_olanh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="CameraPivot" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.703928, 0.710271, 0, -0.710271, 0.703928, 0, 0, 0)
@@ -31,3 +31,18 @@ transform = Transform3D(1, 0, 0, 0, 0.703928, 0.710271, 0, -0.710271, 0.703928, 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.5)
 current = true
+
+[node name="GEO_wall" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.00735, -3.15151)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GEO_wall"]
+shape = SubResource("BoxShape3D_0igi7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="GEO_wall"]
+mesh = SubResource("BoxMesh_06kol")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 4.77322, 4)
+light_color = Color(1, 0, 0, 1)
+shadow_enabled = true
+sky_mode = 1

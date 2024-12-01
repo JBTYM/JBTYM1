@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://xgnoeykk4r5t"]
+[gd_scene load_steps=15 format=3 uid="uid://xgnoeykk4r5t"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_o6td4"]
 [ext_resource type="PackedScene" uid="uid://crv4477t7xqfa" path="res://Meshes/MESH_spider_v1.fbx" id="1_qncoo"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" path="res://states/running.gd" id="5_g5h1x"]
 [ext_resource type="Script" path="res://states/climbing.gd" id="6_jwufv"]
 [ext_resource type="Script" path="res://states/falling.gd" id="7_w80ye"]
-[ext_resource type="Script" path="res://walking.gd" id="8_td3rw"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ajpl5"]
 
@@ -70,7 +69,7 @@ script = ExtResource("1_o6td4")
 [node name="MESH_spider_v1" parent="Pivot" instance=ExtResource("1_qncoo")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.249481, 0.1)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.098, 0.1)
 shape = SubResource("SphereShape3D_ajpl5")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -93,8 +92,3 @@ script = ExtResource("6_jwufv")
 
 [node name="Falling" type="Node" parent="StateMachine"]
 script = ExtResource("7_w80ye")
-
-[node name="Walking" type="Node" parent="StateMachine"]
-script = ExtResource("8_td3rw")
-
-[node name="Backing" type="Node" parent="StateMachine"]
