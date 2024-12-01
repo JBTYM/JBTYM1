@@ -1,4 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://ccvi7fa6nwebe"]
+[gd_scene load_steps=5 format=3 uid="uid://ccvi7fa6nwebe"]
+
+[ext_resource type="PackedScene" uid="uid://xgnoeykk4r5t" path="res://player.tscn" id="1_olanh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0igi7"]
 size = Vector3(50, 1, 50)
@@ -19,3 +21,5 @@ shape = SubResource("BoxShape3D_0igi7")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="GEO_floor"]
 mesh = SubResource("BoxMesh_06kol")
+
+[node name="Player" parent="." instance=ExtResource("1_olanh")]
