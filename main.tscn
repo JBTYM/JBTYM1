@@ -11,11 +11,11 @@ size = Vector3(50, 1, 50)
 
 [node name="Main" type="Node"]
 
-[node name="Floor" type="StaticBody3D" parent="."]
+[node name="GEO_floor" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GEO_floor"]
 shape = SubResource("BoxShape3D_0igi7")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="GEO_floor"]
 mesh = SubResource("BoxMesh_06kol")
