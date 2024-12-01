@@ -20,13 +20,16 @@ func _physics_process(delta: float) -> void:
 		velocity.x = 0
 		velocity.z = 0
 
-	if Input.is_action_pressed("move_forward") or isRunPressed:
+	if Input.is_action_pressed("move_forward"):
 		var forwardVector = -Vector3.FORWARD.rotated(Vector3.UP, rotation.y)
 		velocity = -forwardVector * FORWARD_SPEED * runModifier
-		
 	elif Input.is_action_pressed("move_back"):
 		var backwardVector = Vector3.FORWARD.rotated(Vector3.UP, rotation.y)
 		velocity = -backwardVector * BACK_SPEED * runModifier
+	elif isRunPressed:
+		var forwardVector = -Vector3.FORWARD.rotated(Vector3.UP, rotation.y)
+		velocity = -forwardVector * FORWARD_SPEED * runModifier
+		
 	
 	
 	#If pressing nothing stop velocity
