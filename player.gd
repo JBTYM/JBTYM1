@@ -28,14 +28,16 @@ func _physics_process(delta: float) -> void:
 		velocity = -backwardVector * BACK_SPEED * runModifier
 	elif isRunPressed:
 		var forwardVector = -Vector3.FORWARD.rotated(Vector3.UP, rotation.y)
-		velocity = -forwardVector * FORWARD_SPEED * runModifier
-		
-	
-	
+		velocity = -forwardVector * FORWARD_SPEED * runModifier	
 	#If pressing nothing stop velocity
 	else:
 		velocity.x = 0
 		velocity.z = 0
+		
+	if (isRunPressed):
+		$AnimationPlayer.speed_scale = 4
+	else:
+		$AnimationPlayer.speed_scale = 1
 	
 	# IF turn left WHILE moving back, turn right
 	if Input.is_action_pressed("turn_left") and Input.is_action_pressed("move_back"):
