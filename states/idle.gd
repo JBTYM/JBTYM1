@@ -1,26 +1,31 @@
 extends PlayerState
 
 func enter(previous_state_path: String, data := {}) -> void:
-	player.velocity.x = 0.0
-	print("entering idle")
 	player.animation_player.play("idle")
+	player.velocity = player.basis.z * 0
 
 func physics_update(_delta: float) -> void:
-	player.velocity.y -= player.gravity * _delta
 	if Input.is_action_pressed("turn_left"):
-		player.rotation.z += player.Vec3Z.y - player.turn_speed #* V_LOOK_SENS
-		player.rotation.z = clamp(player.rotation.x, -50, 90)
-		player.rotation.y += player.Vec3Z.y + player.turn_speed #* M_LOOK_SENS
-
+		player.rotate(player.gs.get_held_floorlike(), player.turn_speed)
+		player.animation_player.play("walking")
+		player.animation_player.speed_scale = 2
 	elif Input.is_action_pressed("turn_right"):
-		player.rotation.z -= player.Vec3Z.y + player.turn_speed #* V_LOOK_SENS
-		player.rotation.z = clamp(player.rotation.x, -50, 90)
-		player.rotation.y -= player.Vec3Z.y + player.turn_speed #* M_LOOK_SENS
+		player.rotate(player.gs.get_held_floorlike(), -player.turn_speed)
+		player.animation_player.play("walking")
+		player.animation_player.speed_scale = 2
+	if (Input.is_action_just_released("turn_left") or Input.is_action_just_released("turn_right")):
+		player.animation_player.speed_scale = 1
+		player.animation_player.pause()
+
 	player.move_and_slide()
 
-	if not player.is_on_floor():
+	if not player.rcd.is_colliding():
 		finished.emit(FALLING)
+	elif Input.is_action_pressed("run"):
+		finished.emit(RUNNING)
 	elif Input.is_action_pressed("move_forward"):
 		finished.emit(WALKING)
+	elif Input.is_action_pressed("climb") and (player.rcf.is_colliding()):
+		finished.emit(CLIMBING)
 	# elif Input.is_action_pressed("turn_left") or Input.is_action_pressed("turn_right"):
 	# 	finished.emit(RUNNING)

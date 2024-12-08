@@ -9,6 +9,7 @@ const FALLING = "Falling"
 const CLIMBING = "Climbing"
 const WALKING = "Walking"
 const BACKING = "Backing"
+const AUTOCLIMBING = "AutoClimb"
 
 var player: Player
 
