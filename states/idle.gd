@@ -1,7 +1,7 @@
 extends PlayerState
 
 func enter(previous_state_path: String, data := {}) -> void:
-	player.animation_player.play("idle")
+	player.animation_player.play("Batch1/ANIM_spider_idleBase")
 	player.velocity = player.basis.z * 0
 
 func physics_update(_delta: float) -> void:
@@ -15,7 +15,8 @@ func physics_update(_delta: float) -> void:
 		player.animation_player.speed_scale = 2
 	if (Input.is_action_just_released("turn_left") or Input.is_action_just_released("turn_right")):
 		player.animation_player.speed_scale = 1
-		player.animation_player.pause()
+		player.animation_player.stop()
+		player.animation_player.play("Batch1/ANIM_spider_idleBase")
 
 	player.move_and_slide()
 
