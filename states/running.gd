@@ -21,8 +21,6 @@ func physics_update(delta: float) -> void:
 
 	if not Input.is_action_pressed("run"):
 		finished.emit(IDLE)
-	elif Input.is_action_pressed("move_forward"):
-		finished.emit(WALKING)
 	elif not player.rcd.is_colliding():
 		finished.emit(FALLING)
 	elif Input.is_action_pressed("climb") and player.rcf.is_colliding():
