@@ -1061,7 +1061,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0762382, 0)
 target_position = Vector3(0, 0, -0.4)
 
 [node name="RayCastDownward" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0729456, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0729456, 0.339483)
 target_position = Vector3(0, -0.13, 0)
 
 [node name="RayCastFuture" type="RayCast3D" parent="."]

@@ -19,7 +19,7 @@ size = Vector3(5, 1, 4)
 size = Vector3(7, 1, 5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pdwnc"]
-size = Vector3(8, 3, 2)
+size = Vector3(8, 3.11243, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7wfvl"]
 size = Vector3(7, 2, 7)
@@ -41,7 +41,7 @@ mesh = SubResource("BoxMesh_06kol")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 4.77322, 4)
-light_color = Color(1, 0, 0, 1)
+light_color = Color(1, 0.708375, 0.66164, 1)
 shadow_enabled = true
 sky_mode = 1
 
@@ -80,7 +80,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.5)
 script = ExtResource("3_3l3tg")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1.66003, -3.03438)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 2.1328, -3.03438)
 shape = SubResource("BoxShape3D_pdwnc")
 
 [node name="Area3D3" type="Area3D" parent="."]
