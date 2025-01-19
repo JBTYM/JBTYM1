@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://drqwkmwy347e8"]
+
+[resource]
+transparency = 1
+albedo_color = Color(0.8459, 0.701893, 0.589324, 0.180392)
+metallic = 1.0
+roughness = 0.28
+rim_tint = 0.42
+clearcoat_enabled = true
+clearcoat_roughness = 0.0
+backlight = Color(0.984262, 0.925541, 0.945906, 1)
+refraction_enabled = true
+refraction_scale = 0.02
