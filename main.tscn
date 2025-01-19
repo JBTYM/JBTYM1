@@ -1,8 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://ccvi7fa6nwebe"]
+[gd_scene load_steps=7 format=3 uid="uid://ccvi7fa6nwebe"]
 
 [ext_resource type="PackedScene" uid="uid://xgnoeykk4r5t" path="res://player.tscn" id="1_olanh"]
 [ext_resource type="PackedScene" uid="uid://bkk3s8kqhrkc3" path="res://mesh_uncool_lamp_2.tscn" id="2_b5mr3"]
 [ext_resource type="Material" uid="uid://7h4qswo8lb0n" path="res://Materials/MAT_wall.tres" id="3_705vm"]
+
+[sub_resource type="Environment" id="Environment_v55po"]
+ambient_light_source = 3
+ambient_light_color = Color(0.383443, 0.225427, 0.72536, 1)
+ambient_light_energy = 16.0
+fog_enabled = true
+fog_mode = 1
+fog_density = 0.4365
+fog_depth_begin = 1.0
+fog_depth_end = 26.3
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.1497
+volumetric_fog_length = 39.03
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_se6bn"]
 
@@ -10,6 +23,9 @@
 data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
 
 [node name="Main" type="Node"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_v55po")
 
 [node name="Wall" type="StaticBody3D" parent="."]
 transform = Transform3D(10, 0, 0, 0, -4.37114e-07, -10, 0, 10, -4.37114e-07, 0, 0, 0)
